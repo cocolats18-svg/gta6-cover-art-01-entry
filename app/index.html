@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice City Cover Maker — GTA-style cover art from your photos</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls">
+    <h1>Vice City Cover Maker</h1>
+    <p class="tagline">Your photos, three panels, one sunset poster. Photos stay on your machine — nothing is uploaded.</p>
+
+    <fieldset>
+      <legend>1 · Layout</legend>
+      <div class="row">
+        <button type="button" data-layout="strip" class="active">Vice Strip</button>
+        <button type="button" data-layout="triple">Triple Split</button>
+        <button type="button" data-layout="hero">Hero + Side</button>
+      </div>
+      <label class="radio"><input type="radio" name="mode" value="each" checked> One photo per panel</label>
+      <label class="radio"><input type="radio" name="mode" value="one"> Photo A in every panel</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>2 · Your photos</legend>
+      <label>Photo A <input id="photoA" type="file" accept="image/*"> <span id="photo1Name">sample photo</span></label>
+      <label>Photo B <input id="photoB" type="file" accept="image/*"> <span id="photo2Name">sample photo</span></label>
+      <label>Photo C <input id="photoC" type="file" accept="image/*"> <span id="photo3Name">sample photo</span></label>
+      <div class="row">
+        <button type="button" id="sampleA">Sample A</button>
+        <button type="button" id="sampleB">Sample B</button>
+        <button type="button" id="sampleC">Sample C</button>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>3 · Crop &amp; position</legend>
+      <label>Crop this photo
+        <select id="cropPhoto">
+          <option value="0">Photo A</option>
+          <option value="1">Photo B</option>
+          <option value="2">Photo C</option>
+        </select>
+      </label>
+      <label>Zoom <input id="zoom" type="range" min="1" max="2.5" step="0.05" value="1"></label>
+      <label>Move left / right <input id="offsetX" type="range" min="-0.5" max="0.5" step="0.05" value="0"></label>
+      <label>Move up / down <input id="offsetY" type="range" min="-0.5" max="0.5" step="0.05" value="0"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>4 · Caption</legend>
+      <label>Caption <input id="caption" type="text" maxlength="40" value="VICE CITY NIGHTS"></label>
+      <label>Sub-caption <input id="subcaption" type="text" maxlength="40" value="Sunset Heist"></label>
+      <div class="row swatches" aria-label="Caption colour">
+        <button type="button" data-color="#ff2e88" class="swatch active" style="background:#ff2e88" aria-label="Hot pink">Pink</button>
+        <button type="button" data-color="#00e5ff" class="swatch" style="background:#00e5ff" aria-label="Neon cyan">Cyan</button>
+        <button type="button" data-color="#ffe95e" class="swatch" style="background:#ffe95e" aria-label="Sunset yellow">Yellow</button>
+        <button type="button" data-color="#ffffff" class="swatch" style="background:#ffffff" aria-label="White">White</button>
+      </div>
+      <label>Sunset grade <input id="grade" type="range" min="0" max="1" step="0.05" value="0.7"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>5 · Export</legend>
+      <label>Size
+        <select id="exportSize">
+          <option value="square">1080 x 1080 (square)</option>
+          <option value="portrait">1080 x 1350 (portrait)</option>
+          <option value="wide">1920 x 1080 (wide)</option>
+        </select>
+      </label>
+      <button id="export" type="button" class="primary">Export PNG</button>
+      <p id="status" role="status"></p>
+    </fieldset>
+    <p class="fine">Original design. No Rockstar Games logo, artwork, character or font. Fonts: DejaVu Sans (see app/fonts/LICENSE.txt).</p>
+  </section>
+  <section class="preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="Live preview of the cover"></canvas>
+    <p class="preview-note">Live preview — what you see is what the PNG exports.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
